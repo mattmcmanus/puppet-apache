@@ -20,7 +20,7 @@ define apache::vhost($ensure=running, $source=false, $content=false, $replace=fa
   }
 
   $content_real = $content ? {
-    false   => undef,
+    false   => template("apache/site.erb"),
     default => $content
   }
 
@@ -28,7 +28,7 @@ define apache::vhost($ensure=running, $source=false, $content=false, $replace=fa
     /(absent|purged)/ => absent,
     default           => file
   }
-
+  
   file {
     "${apache_sites_available}/${name}":
       ensure  => $files_ensure,
@@ -39,5 +39,8 @@ define apache::vhost($ensure=running, $source=false, $content=false, $replace=fa
       ensure => link,
       target => "${apache_sites_available}/${name}",
       notify => Service['apache'];
+    "/var/www/${name}":
+      path => "/var/www/${name}",
+      ensure => directory;
   }
 }
