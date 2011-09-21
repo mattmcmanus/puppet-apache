@@ -1,0 +1,16 @@
+ServerName <%= fqdn %>
+ 
+NameVirtualHost <%= hostname %>:80
+ 
+# Turn off ETags
+FileETag None
+
+ <IfModule mpm_prefork_module>
+     StartServers          5
+     MinSpareServers       2
+     MaxSpareServers      10
+     MaxClients          100
+     MaxRequestsPerChild   0
+ </IfModule>
+ 
+CustomLog "||/usr/sbin/rotatelogs /var/log/apache2/vhost_access.log 86400" vhost_combined
