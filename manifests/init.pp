@@ -80,6 +80,11 @@ class apache {
       source => "puppet:///apache/apache.conf",
       require => File["apache::config_dir"],
       notify => Service["apache"];
+    "http.conf":
+      path => "${apache_conf_dir}/http.conf",
+      content  => template("apache/http.conf.erb"),
+      require => File["apache::config_dir"],
+      notify => Service["apache"];
     "envvars":
       path => "${apache_conf_dir}/envvars",
       content => template("apache/envvars.erb"),
