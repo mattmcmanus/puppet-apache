@@ -1,4 +1,4 @@
-<VirtualHost <%= hostname %>:80>
+<VirtualHost <%= apache_listen_address %>:<%= apache_listen_port %>>
   ServerName <%= name %>
   DocumentRoot /var/www/<%= name %>/
 </VirtualHost>

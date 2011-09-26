@@ -3,6 +3,9 @@ define apache::vhost($ensure=running, $source=false, $content=false, $replace=fa
 
   $apache_sites_available = $apache::apache_sites_available
   $apache_sites_enabled = $apache::apache_sites_enabled
+  $apache_listen_address = $apache::apache_listen_address
+  $apache_listen_port = $apache::apache_listen_port
+  
 
   if $ensure in [ present, running, absent, purged ] {
     $ensure_real = $ensure

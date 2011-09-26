@@ -1,6 +1,6 @@
 ServerName <%= fqdn %>
  
-NameVirtualHost <%= hostname %>:80
+NameVirtualHost <%= apache_listen_address %>:<%= apache_listen_port %>
  
 # Turn off ETags
 FileETag None
