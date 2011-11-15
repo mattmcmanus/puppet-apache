@@ -44,6 +44,8 @@ define apache::vhost($ensure=running, $source=false, $content=false, $replace=fa
       notify => Service['apache'];
     "/var/www/${name}":
       path => "/var/www/${name}",
-      ensure => directory;
+      ensure => directory,
+      group => 'www-data',
+      owner => 'www-data';
   }
 }
